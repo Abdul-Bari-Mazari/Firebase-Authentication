@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.user__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 25px;
+  background-color: lightsteelblue;
+  width: 320px;
+  position: relative;
+  /* height: 400px; */
+}
+
+.user__image {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user__email {
+  color: white;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: black;
+  font-size: 18px;
+}
+
+.user__email__status {
+  font-size: 16px;
+  /* margin-bottom: 45px; */
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  background-color: black;
+}
+
+.user__button {
+  position: absolute;
+    right: 12px;
+    bottom: 12px;
+  padding: 4px 10px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  background-color: crimson;
+}
+
+.user__verification {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  background-color: rgb(216, 216, 216);
+  padding: 6px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  /* border: 1px solid black; */
+}
+
+.user__verification:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.verification_image {
+  width: 12px;
+}

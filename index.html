@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Firebase Email Verification</title>
+    <link
+      rel="stylesheet"
+      href="index.css"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <div class="main__animation">
+        <dotlottie-player
+          src="https://lottie.host/19fd57ff-5c5b-48bc-aa01-b93bfdee5a3c/darAC44W63.json"
+          background="black"
+          speed="1"
+          style="width: 400px; height: 400px"
+          autoplay
+        ></dotlottie-player>
+      </div>
+      <div class="main__components">
+        <h1 class="main__heading">Register</h1>
+
+        <div class="main__email">
+
+            <label for="email">Email:</label>
+            <input
+              placeholder="Enter Email"
+              id="email"
+              type="email"
+            />
+        </div>
+        <div class="main__password">
+
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+            />
+        </div>
+
+        <p>Already registered? <a href="" class="main__anchor">Login</a> </p>
+        <button id="register" class="main__button">Register</button>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+
+    <script
+      src="app.js"
+      type="module"
+    ></script>
+  </body>
+</html>
