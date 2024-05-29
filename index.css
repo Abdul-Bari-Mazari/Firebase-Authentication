@@ -1,76 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
-    /* font-size: x-large; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* font-size: x-large; */
 }
 
 .main {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    width: max-content;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: black;
-    color: white;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: max-content;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
 }
 
 .main__heading {
-    font-size: 42px;
-    color: rgb(108, 195, 214);
+  font-size: 42px;
+  color: rgb(108, 195, 214);
 }
 
 .main__components {
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.main__email, .main__password {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.main__email,
+.main__password {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 input {
-    border: none;
-    border-radius: 3px;
-    padding: 5px;
-    outline: none;
-    font-weight: 500;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  outline: none;
+  font-weight: 500;
+}
+
+.password__input__elements {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password__eyeIcon {
+  width: 30px;
+  margin-left: -35px;
+  cursor: pointer;
 }
 
 input::placeholder {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .main__anchor {
-    color: rgb(109, 109, 255);
+  color: rgb(109, 109, 255);
 }
 
 .main__button {
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: lightblue;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: lightblue;
 }

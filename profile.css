@@ -52,9 +52,10 @@ body {
 }
 
 .user__button {
+  cursor: pointer;
   position: absolute;
-    right: 12px;
-    bottom: 12px;
+  right: 12px;
+  bottom: 12px;
   padding: 4px 10px;
   font-size: 14px;
   color: white;

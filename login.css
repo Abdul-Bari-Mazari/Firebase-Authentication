@@ -8,62 +8,89 @@
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .main {
-    display: flex;
-    align-items: center;
-    padding: 30px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
 }
 
 .login__components {
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.login__email, .login__password {
-    display: flex;
-    flex-direction: column;
+.login__email,
+.login__password {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__password__components {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password__eyeIcon {
+  width: 30px;
+  margin-left: -35px;
+  cursor: pointer;
 }
 
 input {
-    border: none;
-    border-radius: 3px;
-    padding: 5px;
-    outline: none;
-    font-weight: 500;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  outline: none;
+  font-weight: 500;
+  width: 100%;
 }
 
 input::placeholder {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .login__heading {
-    color: rgb(223, 175, 42);
-    font-size: 42px;
+  color: rgb(223, 175, 42);
+  font-size: 42px;
 }
 
 .login__anchor {
-    color: rgb(109, 109, 255);
+  color: rgb(109, 109, 255);
 }
 
 .login__button {
-    border: none;
-    border-radius: 3px;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: rgb(249, 245, 118);
-    cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(249, 245, 118);
+  cursor: pointer;
+}
+
+@media (max-width: 837px) {
+  .login__animation {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+    .main {
+        width: 300px;
+    }
 }

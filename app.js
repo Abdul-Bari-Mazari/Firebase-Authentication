@@ -14,6 +14,34 @@ let registerBtn = document.getElementById("register");
 let signInBtn = document.getElementById("signIn");
 let signOutBtn = document.getElementById("signOut");
 
+let password__inputField = document.querySelector(".password__inputField");
+let login__password__inputField = document.querySelector(
+  ".login__password__inputField"
+);
+let password__eyeIcon = document.querySelector(".password__eyeIcon");
+
+const showPassword = () => {
+  if (
+    (password__inputField && password__inputField.type === "text") ||
+    login__password__inputField === "text"
+  ) {
+    password__inputField.type = "password";
+  } else if (password__inputField) {
+    password__inputField.type = "text";
+  }
+
+  if (
+    login__password__inputField &&
+    login__password__inputField.type === "text"
+  ) {
+    login__password__inputField.type = "password";
+  } else if (login__password__inputField) {
+    login__password__inputField.type = "text";
+  }
+};
+
+password__eyeIcon.addEventListener("click", showPassword);
+
 const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
