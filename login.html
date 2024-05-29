@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    
-    <div class="login__animation">
+    <link
+      rel="stylesheet"
+      href="login.css"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <div class="login__animation">
+        <dotlottie-player
+          src="https://lottie.host/a64e0655-0ae4-47c6-9d8c-2b7893df0d8c/EnedgGN7JF.json"
+          background="black"
+          speed="1"
+          style="width: 400px; height: 400px"
+          direction="1"
+          playMode="normal"
+          loop="true"
+          autoplay
+        ></dotlottie-player>
+      </div>
 
-        <dotlottie-player src="https://lottie.host/a64e0655-0ae4-47c6-9d8c-2b7893df0d8c/EnedgGN7JF.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" controls autoplay></dotlottie-player>
+      <div class="login__components">
+        <h1 class="login__heading">Sign in</h1>
+        <div class="login__email">
+          <label for="email">Email</label>
+          <input
+            placeholder="Enter Email"
+            id="email"
+            type="email"
+          />
+        </div>
+        <div class="login__password"> 
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+          />
+        </div>
+        <p>Not a member? <a class="login__anchor" href="./index.html">Register</a></p>
+        <button id="signIn" class="login__button">Sign In</button>
+      </div>
     </div>
-    <button id="signIn">Sign In</button>
 
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
 
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-
-    <script type="module" src="app.js"></script>
-
-</body>
+    <script
+      type="module"
+      src="app.js"
+    ></script>
+  </body>
 </html>
