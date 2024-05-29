@@ -40,13 +40,16 @@ const showPassword = () => {
   }
 };
 
-password__eyeIcon.addEventListener("click", showPassword);
+if (password__eyeIcon) {
+  password__eyeIcon.addEventListener("click", showPassword);
+}
 
 const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("userCredential", userCredential);
+      alert("Succesfully Registered!");
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -81,6 +84,7 @@ onAuthStateChanged(auth, (user) => {
       user__verification.innerText = "Verified";
       user__verification.style.backgroundColor = "lightgreen";
       verification_image.style.display = "none";
+      alert("Email has been verified!");
     }
   } else {
     console.log("User isn't signed in");
@@ -93,6 +97,7 @@ const signIn = () => {
       const user = userCredential.user;
       console.log("user", user);
       email.value, (password.value = "");
+      alert("Successfully Signed in!");
       window.location = "./profile.html";
     })
     .catch((error) => {
@@ -108,7 +113,7 @@ if (signInBtn) {
 
 const sendEmail = () => {
   sendEmailVerification(auth.currentUser).then(() => {
-    console.log("Email successfully sent!");
+    alert("Email successfully sent!");
   });
 };
 
