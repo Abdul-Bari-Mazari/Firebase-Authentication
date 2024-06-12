@@ -1,25 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>User Profile</title>
-    <link rel="stylesheet" href="profile.css">
-</head>
-<body>
-    
-    <div class="user__card">
-        <h1>User Profile</h1>
-        <img class="user__image" src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="">
-        <p class="user__email"></p>
-        <p class="user__email__status">Email Verification Status: <span class="status">&#10060;</span></p>
-        <p class="user__verification">Verify Email <img class="verification_image" src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png" alt=""></p>
-        <button class="user__button signOut" id="signOut">Sign Out</button>
+    <link
+      rel="stylesheet"
+      href="./styles/profile.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.2.3-dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container p-3 col-12 col-md-8">
+      <div class="user__card">
+        <div
+          class="user__all__content d-flex flex-column align-items-center justify-content-center"
+        >
+          <div class="user__profile d-flex flex-column align-items-center p-3">
+            <img
+              class="user__image"
+              src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg"
+              alt=""
+            />
+            <div class="d-flex align-items-center mb-4">
+              <p class="user__email"></p>
+              <span class="status">&#10060;</span>
+            </div>
+          </div>
+
+          <div class="user__controls d-flex flex-column">
+            <div
+              class="email__verfication__components d-flex mb-2 d-flex align-items-center justify-content-between"
+            >
+              <h6 class="user__email__status">Email Status:</h6>
+              <div class="d-flex align-items-center justify-content-center">
+                <p class="user__verification">
+                  Verify Email
+                  <img
+                    class="verification_image"
+                    src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png"
+                    alt=""
+                  />
+                </p>
+                <p class="verify__status fw-bold"></p>
+              </div>
+            </div>
+            <div class="change__password__container mb-2">
+              <h6 class="d-flex align-items-center justify-content-between">
+                Change password:
+                <a
+                  class=""
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal2"
+                >
+                  Click here
+                </a>
+                <!-- Change Password Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal2"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel2"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalLabel2"
+                        >
+                          Change Email
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <label
+                          for="currentPassword"
+                          class="mb-1"
+                          >Enter Current Password</label
+                        >
+                        <input
+                          type="password"
+                          name=""
+                          id="currentPassword"
+                          placeholder="Enter current password.."
+                          class="currentPassword mb-3 p-1"
+                        />
+
+                        <label
+                          class="mb-1"
+                          for="newPassword"
+                          >Enter new password</label
+                        >
+                        <input
+                          id="newPassword"
+                          type="password"
+                          placeholder="Enter new email.."
+                          class="newPassword p-1"
+                        />
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          id="change__password"
+                          type="button"
+                          class="btn btn-primary"
+                        >
+                          Save Changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </h6>
+            </div>
+
+            <div class="change__email__container mb-2">
+              <h6 class="d-flex align-items-center justify-content-between">
+                Change email:
+                <!-- Button trigger modal -->
+                <a
+                  class=""
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Click here
+                </a>
+
+                <!-- Change Email Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalLabel"
+                        >
+                          Change Email
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+
+                        <label
+                        for="emailCurrentPassword"
+                        class="mb-1"
+                        >Enter current password:</label
+                      >
+                      <input
+                        type="password"
+                        name=""
+                        id="emailCurrentPassword"
+                        placeholder="Enter current password.."
+                        class="currentPassword mb-3 p-1"
+                      />
+                        
+                      <label for="newEmail" class="mb-1">
+                        Enter new email:
+                        </label>
+                        <input
+                        id="newEmail"
+                          type="email"
+                          placeholder="Enter new email.."
+                          class="newEmail p-1"
+                        />
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          id="change__email"
+                          type="button"
+                          class="btn btn-primary"
+                        >
+                          Save Changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </h6>
+            </div>
+
+            <div class="delete__account__container mb-2">
+              <h6 class="d-flex align-items-center justify-content-between">
+                Delete account:
+                <a class=""> Click here </a>
+              </h6>
+            </div>
+          </div>
+          <button
+            class="user__button signOut"
+            id="signOut"
+          >
+            Sign Out
+          </button>
+        </div>
+        <!-- User all content-->
+      </div>
+      <!-- User card -->
     </div>
+    <!-- container -->
 
-
-
-
-    <script src="app.js" type="module"></script>
-</body>
+    <script
+      src="./js/app.js"
+      type="module"
+    ></script>
+    <script src="./bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
+  </body>
 </html>

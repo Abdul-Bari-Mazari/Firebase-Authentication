@@ -9,7 +9,7 @@
     <title>Login Page</title>
     <link
       rel="stylesheet"
-      href="login.css"
+      href="./styles/login.css"
     />
   </head>
   <body>
@@ -37,21 +37,44 @@
             type="email"
           />
         </div>
-        <div class="login__password"> 
+        <div class="login__password">
           <label for="password">Password</label>
           <div class="login__password__components">
-
-              <input
+            <input
               class="login__password__inputField"
-                type="password"
-                id="password"
-                placeholder="Enter Password"
-              />
-              <img class="password__eyeIcon" src="https://static.vecteezy.com/system/resources/thumbnails/014/551/056/small_2x/eye-icon-simple-flat-eye-design-vision-care-concept-wear-glasses-for-a-clear-vision-png.png" alt="">
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+            />
+            <img
+              class="password__eyeIcon"
+              src="https://static.vecteezy.com/system/resources/thumbnails/014/551/056/small_2x/eye-icon-simple-flat-eye-design-vision-care-concept-wear-glasses-for-a-clear-vision-png.png"
+              alt=""
+            />
           </div>
         </div>
-        <p>Not a member? <a class="login__anchor" href="./index.html">Register</a></p>
-        <button id="signIn" class="login__button">Sign In</button>
+        <p>
+          Click
+          <a
+            class="login__anchor reset_password_anchor"
+            >here</a
+          >
+          to reset password
+        </p>
+        <button
+          id="signIn"
+          class="login__button"
+        >
+          Sign In
+        </button>
+        <p>
+          Not a member?
+          <a
+            class="login__anchor"
+            href="./index.html"
+            >Register</a
+          >
+        </p>
       </div>
     </div>
 
@@ -62,7 +85,7 @@
 
     <script
       type="module"
-      src="app.js"
+      src="./js/app.js"
     ></script>
   </body>
 </html>

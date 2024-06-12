@@ -5,6 +5,7 @@
 }
 
 body {
+  background-color: grey !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +13,19 @@ body {
   height: 100vh;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .user__card {
+  width: 100%;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,35 +33,32 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   padding: 25px;
-  background-color: lightsteelblue;
-  width: 320px;
+  /* background-color: lightsteelblue; */
+  /* width: 320px; */
   position: relative;
-  /* height: 400px; */
+  height: 560px;
 }
+
+/* .user__profile {
+  border-right: 1px solid rgb(95, 151, 170);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+} */
 
 .user__image {
   width: 200px;
   border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 .user__email {
-  color: white;
+  /* color: black; */
   padding: 5px;
   border: 1px solid white;
   border-radius: 3px;
-  background-color: black;
+  /* background-color: black; */
   font-size: 18px;
-}
-
-.user__email__status {
-  font-size: 16px;
-  /* margin-bottom: 45px; */
-  padding: 5px;
-  border: 1px solid white;
-  border-radius: 3px;
-  color: white;
-  background-color: black;
 }
 
 .user__button {
@@ -69,10 +79,10 @@ body {
   align-items: center;
   gap: 5px;
   color: black;
-  background-color: rgb(216, 216, 216);
-  padding: 6px;
+  /* background-color: rgb(216, 216, 216); */
+  /* padding: 6px; */
   font-weight: bold;
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
   /* border: 1px solid black; */
 }
 
@@ -83,4 +93,31 @@ body {
 
 .verification_image {
   width: 12px;
+}
+
+.user__controls {
+  width: 400px;
+}
+
+/* Modal */
+
+.modal-body input {
+  width: 100%;
+  outline: none;
+}
+
+.email__verfication__components,
+.change__password__container,
+.change__email__container {
+  border-bottom: 1px solid grey;
+}
+
+@media (max-width: 500px) {
+  .user__image {
+    width: 160px;
+  }
+
+  .user__controls {
+    width: 250px;
+  }
 }

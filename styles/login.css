@@ -28,13 +28,14 @@ body {
   width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 19px;
 }
 
 .login__email,
 .login__password {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .login__password__components {
@@ -51,6 +52,7 @@ body {
 }
 
 input {
+  font-size: 16px;
   border: none;
   border-radius: 3px;
   padding: 5px;
@@ -69,7 +71,9 @@ input::placeholder {
 }
 
 .login__anchor {
+  text-decoration: underline;
   color: rgb(109, 109, 255);
+  cursor: pointer;
 }
 
 .login__button {
@@ -90,8 +94,8 @@ input::placeholder {
 }
 
 @media (max-width: 460px) {
-    .main {
-        width: 300px;
-        height: 426px;
-    }
+  .main {
+    width: 300px;
+    height: 426px;
+  }
 }

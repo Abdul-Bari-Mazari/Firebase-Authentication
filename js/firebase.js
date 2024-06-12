@@ -5,7 +5,11 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  sendEmailVerification
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  verifyBeforeUpdateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -22,9 +26,14 @@ const auth = getAuth(app);
 
 export {
   auth,
+  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  sendEmailVerification
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  verifyBeforeUpdateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 };

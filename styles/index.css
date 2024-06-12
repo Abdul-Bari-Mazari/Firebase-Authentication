@@ -74,6 +74,10 @@ input::placeholder {
   font-weight: normal;
 }
 
+.already_resgistered {
+  margin-bottom: 0px !important;
+}
+
 .main__anchor {
   color: rgb(109, 109, 255);
 }
