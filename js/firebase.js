@@ -10,6 +10,8 @@ import {
   verifyBeforeUpdateEmail,
   reauthenticateWithCredential,
   EmailAuthProvider,
+  updatePassword,
+  deleteUser,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -36,4 +38,6 @@ export {
   verifyBeforeUpdateEmail,
   reauthenticateWithCredential,
   EmailAuthProvider,
+  updatePassword,
+  deleteUser,
 };

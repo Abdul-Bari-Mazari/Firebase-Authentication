@@ -9,6 +9,8 @@ import {
   verifyBeforeUpdateEmail,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  updatePassword,
+  deleteUser,
 } from "./firebase.js";
 
 let email = document.getElementById("email"),
@@ -54,11 +56,17 @@ const register = () => {
       const user = userCredential.user;
       console.log("userCredential", userCredential);
       alert("Succesfully Registered!");
+      window.location.href = "./login.html";
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("error", error.message);
+      if (errorCode === "auth/invalid-email") {
+        alert("Invalid Email Address!");
+      } else if (errorCode === "auth/missing-password") {
+        alert("Password can't be empty!");
+      }
+      console.log("errorCode:", errorCode);
     });
 };
 
@@ -74,10 +82,9 @@ let verify__status = document.querySelector(".verify__status");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("USER", user);
-    console.log("User is signed in:", user.email);
-    const uid = user.uid;
-    console.log("user id:", uid);
+    // console.log("USER", user);
+    console.log("User:", user.email);
+    // const uid = user.uid;
     if (user__email) {
       user__email.innerText = user.email;
     }
@@ -88,13 +95,14 @@ onAuthStateChanged(auth, (user) => {
       status.innerHTML = `&#9989;`;
       user__verification.innerText = "";
       verify__status.innerHTML = "Verified";
-      // user__verification.style.backgroundColor = "lightgreen";
+      console.log("Verify status:", verify__status.textContent);
       verification_image.style.display = "none";
     }
   } else {
     console.log("User isn't signed in");
   }
 });
+
 
 const signIn = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
@@ -104,11 +112,20 @@ const signIn = () => {
       email.value, (password.value = "");
       alert("Successfully Signed in!");
       window.location = "./profile.html";
+      console.log("Verify status:", verify__status);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("error", error);
+      if (errorCode === "auth/invalid-email") {
+        alert("Invalid Email Address!");
+      } else if (errorCode === "auth/missing-password") {
+        alert("Missing password!");
+      } else if (errorCode === "auth/invalid-credential") {
+        alert("Invalid credentials!");
+      }
+      console.log("errorCode:", errorCode);
+      // console.log("error:", error.message);
     });
 };
 
@@ -148,10 +165,32 @@ if (resetPasswordBtn) {
   resetPasswordBtn.addEventListener("click", resetPassword);
 }
 
+let authenticationType = null;
+
+const emailAuthentication = () => {
+  authenticationType = "email";
+  const currentPassElement = document.getElementById("emailCurrentPassword");
+  reauthenticateUser(currentPassElement);
+};
+
+const passwordAuthentication = () => {
+  authenticationType = "password";
+  const currentPassElement = document.getElementById("passCurrentPassword");
+  reauthenticateUser(currentPassElement);
+};
+
+const deleteAccAuthentication = () => {
+  authenticationType = "delteAccount";
+  const currentPassElement = document.getElementById(
+    "deleteAccountCurrentPass"
+  );
+  reauthenticateUser(currentPassElement);
+};
+
 let change__email = document.getElementById("change__email");
 let newEmail = document.querySelector(".newEmail");
 
-const changeEmail = () => {
+const updateEmail = () => {
   verifyBeforeUpdateEmail(auth.currentUser, newEmail.value)
     .then(() => {
       alert("Email successfully updated!");
@@ -164,18 +203,65 @@ const changeEmail = () => {
     });
 };
 
-const reauthenticateUser = () => {
+let change__password = document.getElementById("change__password");
+
+const updatePasswordFunc = () => {
   const user = auth.currentUser;
-  const emailCurrentPassword = document.getElementById("emailCurrentPassword");
+  const new_password = document.getElementById("newPassword");
+  const newPassword = new_password.value;
+
+  updatePassword(user, newPassword)
+    .then(() => {
+      alert("Password updated successfully");
+    })
+    .catch((error) => {
+      alert("Error updating password");
+      console.log("Error updating password:", error);
+    });
+};
+
+if (change__password) {
+  change__password.addEventListener("click", passwordAuthentication);
+}
+
+let deleteAccBtn = document.getElementById("deleteAccBtn");
+
+const deleteAccount = () => {
+  const user = auth.currentUser;
+
+  deleteUser(user)
+    .then(() => {
+      alert("Your account has been deleted!");
+      console.log("Account deleted!", user);
+      window.location.href = "./index.html";
+    })
+    .catch((error) => {
+      alert("An error occured deleting account!");
+      console.log("Error:", error);
+    });
+};
+
+if (deleteAccBtn) {
+  deleteAccBtn.addEventListener("click", deleteAccAuthentication);
+}
+
+const reauthenticateUser = (currentPassElement) => {
+  const user = auth.currentUser;
   const credential = EmailAuthProvider.credential(
     user.email,
-    emailCurrentPassword.value
+    currentPassElement.value
   );
 
   reauthenticateWithCredential(user, credential)
     .then(() => {
       alert("Successfully authenticated!");
-      changeEmail();
+      if (authenticationType === "email") {
+        updateEmail();
+      } else if (authenticationType === "password") {
+        updatePasswordFunc();
+      } else if (authenticationType === "delteAccount") {
+        deleteAccount();
+      }
     })
     .catch((error) => {
       alert("An error occured authenticating!");
@@ -184,7 +270,7 @@ const reauthenticateUser = () => {
 };
 
 if (change__email) {
-  change__email.addEventListener("click", reauthenticateUser);
+  change__email.addEventListener("click", emailAuthentication);
 }
 
 const signOutUser = () =>

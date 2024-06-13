@@ -69,14 +69,14 @@
                   aria-labelledby="exampleModalLabel2"
                   aria-hidden="true"
                 >
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h1
                           class="modal-title fs-5"
                           id="exampleModalLabel2"
                         >
-                          Change Email
+                          Change Password
                         </h1>
                         <button
                           type="button"
@@ -87,14 +87,14 @@
                       </div>
                       <div class="modal-body">
                         <label
-                          for="currentPassword"
+                          for="passCurrentPassword"
                           class="mb-1"
                           >Enter Current Password</label
                         >
                         <input
                           type="password"
                           name=""
-                          id="currentPassword"
+                          id="passCurrentPassword"
                           placeholder="Enter current password.."
                           class="currentPassword mb-3 p-1"
                         />
@@ -153,7 +153,7 @@
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h1
@@ -170,25 +170,27 @@
                         ></button>
                       </div>
                       <div class="modal-body">
+                        <label
+                          for="emailCurrentPassword"
+                          class="mb-1"
+                          >Enter current password:</label
+                        >
+                        <input
+                          type="password"
+                          name=""
+                          id="emailCurrentPassword"
+                          placeholder="Enter current password.."
+                          class="currentPassword mb-3 p-1"
+                        />
 
                         <label
-                        for="emailCurrentPassword"
-                        class="mb-1"
-                        >Enter current password:</label
-                      >
-                      <input
-                        type="password"
-                        name=""
-                        id="emailCurrentPassword"
-                        placeholder="Enter current password.."
-                        class="currentPassword mb-3 p-1"
-                      />
-                        
-                      <label for="newEmail" class="mb-1">
-                        Enter new email:
+                          for="newEmail"
+                          class="mb-1"
+                        >
+                          Enter new email:
                         </label>
                         <input
-                        id="newEmail"
+                          id="newEmail"
                           type="email"
                           placeholder="Enter new email.."
                           class="newEmail p-1"
@@ -219,7 +221,102 @@
             <div class="delete__account__container mb-2">
               <h6 class="d-flex align-items-center justify-content-between">
                 Delete account:
-                <a class=""> Click here </a>
+                <a class="" data-bs-target="#exampleModalToggle"
+                data-bs-toggle="modal"> Click here </a>
+
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel"
+                        >
+                          Delete Account
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure? Your account will be deleted permenantly and can't be recovered.
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-danger"
+                          data-bs-target="#exampleModalToggle2"
+                          data-bs-toggle="modal"
+                        >
+                        I know what I am doing
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle2"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel2"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel2"
+                        >
+                          Modal 2
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <label
+                        for="deleteAccPass"
+                        class="mb-1"
+                        >Enter Current Password</label
+                      >
+                      <input
+                        type="password"
+                        name=""
+                        id="deleteAccountCurrentPass"
+                        placeholder="Enter current password.."
+                        class="currentPassword mb-3 p-1"
+                      />
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          class="btn btn-danger"
+                          id="deleteAccBtn"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </h6>
             </div>
           </div>
