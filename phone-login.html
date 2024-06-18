@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Login With Phone</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.2.3-dist/css/bootstrap.min.css"
+    />
+
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        background-color: black;
+        color: white;
+        width: 450px;
+        /* height: 350px; */
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 20px;
+      }
+
+      input {
+        width: 100%;
+        outline: none;
+      }
+
+      .backBtn {
+        bottom: 10px;
+        right: 22px;
+      }
+
+      /* #sendCodeBtn {
+            bottom: 15px;
+            transform: translateX(50%);
+        } */
+    </style>
+  </head>
+  <body>
+    <div class="container d-flex flex-column position-relative">
+      <h2 class="mb-3 text-center">Sign in With Phone Number</h2>
+
+      <div class="d-flex flex-column">
+        <label
+          class="mt-4"
+          for="phoneNumber"
+          >Phone Number</label
+        >
+        <input
+          class="rounded p-1"
+          type="number"
+          name=""
+          id="phoneNumber"
+          placeholder="Enter phone number.."
+        />
+        <button
+          id="sendCodeBtn"
+          class="btn btn-success mt-2"
+        >
+          Send Verification Code
+        </button>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label
+          class="mt-4"
+          for="OTPInput"
+          >Enter Code</label
+        >
+        <input
+          class="rounded p-1"
+          type="number"
+          name=""
+          id="OTPInput"
+          placeholder="Enter OTP recieved.."
+        />
+        <button
+          id="verifyOTPBtn"
+          class="mt-2 text-center rounded btn btn-success"
+        >
+          Verify OTP
+        </button>
+      </div>
+
+      <div
+        id="recaptcha-container"
+        class="mt-3 mb-5 d-flex align-items-center justify-content-center w-100"
+      ></div>
+      <button class="backBtn btn btn-light position-absolute px-3">
+        Back
+      </button>
+    </div>
+
+    <script>
+      let backBtn = document.querySelector(".backBtn");
+      backBtn.addEventListener('click', () => {
+        window.location.href = './login.html'
+      })
+    </script>
+
+    <script
+      src="./js/app.js"
+      type="module"
+    ></script>
+    <script
+      type="module"
+      src="./js/app.js"
+    ></script>
+    <script src="./bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

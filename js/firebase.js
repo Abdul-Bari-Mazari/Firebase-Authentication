@@ -12,6 +12,8 @@ import {
   EmailAuthProvider,
   updatePassword,
   deleteUser,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -40,4 +42,6 @@ export {
   EmailAuthProvider,
   updatePassword,
   deleteUser,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
 };

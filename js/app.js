@@ -11,6 +11,8 @@ import {
   reauthenticateWithCredential,
   updatePassword,
   deleteUser,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
 } from "./firebase.js";
 
 let email = document.getElementById("email"),
@@ -75,6 +77,8 @@ if (registerBtn) {
 }
 
 let user__email = document.querySelector(".user__email");
+let user__phoneNumber = document.querySelector(".user__phoneNumber");
+let user__controls = document.querySelector(".user__controls");
 let status = document.querySelector(".status");
 let user__verification = document.querySelector(".user__verification");
 let verification_image = document.querySelector(".verification_image");
@@ -82,14 +86,19 @@ let verify__status = document.querySelector(".verify__status");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // console.log("USER", user);
-    console.log("User:", user.email);
-    // const uid = user.uid;
-    if (user__email) {
+    if (user.phoneNumber !== null) {
+      let profileContainer = document.querySelector(".profileContainer");
+      console.log("User Phone:", user.phoneNumber);
+      console.log("USER", user);
+      profileContainer.style.width = "500px"
+      status.style.display = "none";
+      user__controls.style.display = "none";
+      user__phoneNumber.innerText = user.phoneNumber;
+    } else if (user.email !== null) {
       user__email.innerText = user.email;
+      status.style.display = "block";
+      user__controls.style.display = "flex";
     }
-
-    //
 
     if (user.emailVerified === true) {
       status.innerHTML = `&#9989;`;
@@ -102,7 +111,6 @@ onAuthStateChanged(auth, (user) => {
     console.log("User isn't signed in");
   }
 });
-
 
 const signIn = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
@@ -285,4 +293,54 @@ const signOutUser = () =>
 
 if (signOutBtn) {
   signOutBtn.addEventListener("click", signOutUser); // Event
+}
+
+// ! Phone authentication
+
+let sendCodeBtn = document.getElementById("sendCodeBtn");
+let confirmationResultGlobal;
+
+const registerWithPhone = () => {
+  const phoneNumber = document.getElementById("phoneNumber");
+  window.recaptchaVerifier = new RecaptchaVerifier(
+    auth,
+    "recaptcha-container",
+    {}
+  );
+
+  const appVerifier = window.recaptchaVerifier;
+
+  signInWithPhoneNumber(auth, `+${phoneNumber.value}`, appVerifier)
+    .then((confirmationResult) => {
+      alert("Verification code sent!");
+      confirmationResultGlobal = confirmationResult;
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+};
+
+let verifyOTPBtn = document.getElementById("verifyOTPBtn");
+
+const verifyOTP = () => {
+  const code = document.getElementById("OTPInput");
+  confirmationResultGlobal
+    .confirm(code.value)
+    .then((result) => {
+      const user = result.user;
+      console.log("user:", user);
+      alert("OTP verified!");
+      window.location.href = "./profile.html";
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+};
+
+if (sendCodeBtn) {
+  sendCodeBtn.addEventListener("click", registerWithPhone);
+}
+
+if (verifyOTPBtn) {
+  verifyOTPBtn.addEventListener("click", verifyOTP);
 }

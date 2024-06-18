@@ -36,7 +36,7 @@ p {
   /* background-color: lightsteelblue; */
   /* width: 320px; */
   position: relative;
-  height: 560px;
+  height: fit-content;
 }
 
 /* .user__profile {

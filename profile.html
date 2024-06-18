@@ -17,7 +17,7 @@
     />
   </head>
   <body>
-    <div class="container p-3 col-12 col-md-8">
+    <div class="profileContainer container p-3 col-12 col-md-8">
       <div class="user__card">
         <div
           class="user__all__content d-flex flex-column align-items-center justify-content-center"
@@ -31,10 +31,11 @@
             <div class="d-flex align-items-center mb-4">
               <p class="user__email"></p>
               <span class="status">&#10060;</span>
+            <p class="user__phoneNumber"></p>
             </div>
           </div>
 
-          <div class="user__controls d-flex flex-column">
+          <div class="user__controls flex-column" style="display: flex;">
             <div
               class="email__verfication__components d-flex mb-2 d-flex align-items-center justify-content-between"
             >
@@ -219,10 +220,15 @@
             </div>
 
             <div class="delete__account__container mb-2">
-              <h6 class="d-flex align-items-center justify-content-between">
+              <h6 class="d-flex align-items-center justify-content-between mb-5">
                 Delete account:
-                <a class="" data-bs-target="#exampleModalToggle"
-                data-bs-toggle="modal"> Click here </a>
+                <a
+                  class=""
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Click here
+                </a>
 
                 <div
                   class="modal fade"
@@ -248,7 +254,8 @@
                         ></button>
                       </div>
                       <div class="modal-body">
-                        Are you sure? Your account will be deleted permenantly and can't be recovered.
+                        Are you sure? Your account will be deleted permenantly
+                        and can't be recovered.
                       </div>
                       <div class="modal-footer">
                         <button
@@ -256,7 +263,7 @@
                           data-bs-target="#exampleModalToggle2"
                           data-bs-toggle="modal"
                         >
-                        I know what I am doing
+                          I know what I am doing
                         </button>
                       </div>
                     </div>
@@ -287,17 +294,17 @@
                       </div>
                       <div class="modal-body">
                         <label
-                        for="deleteAccPass"
-                        class="mb-1"
-                        >Enter Current Password</label
-                      >
-                      <input
-                        type="password"
-                        name=""
-                        id="deleteAccountCurrentPass"
-                        placeholder="Enter current password.."
-                        class="currentPassword mb-3 p-1"
-                      />
+                          for="deleteAccPass"
+                          class="mb-1"
+                          >Enter Current Password</label
+                        >
+                        <input
+                          type="password"
+                          name=""
+                          id="deleteAccountCurrentPass"
+                          placeholder="Enter current password.."
+                          class="currentPassword mb-3 p-1"
+                        />
                       </div>
                       <div class="modal-footer">
                         <button
@@ -337,6 +344,7 @@
       src="./js/app.js"
       type="module"
     ></script>
+
     <script src="./bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
   </body>
 </html>
