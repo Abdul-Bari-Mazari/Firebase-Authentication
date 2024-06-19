@@ -16,8 +16,10 @@ import {
   signInWithPhoneNumber,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
+import { API_KEY } from "./api-key.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB5yZIt6uSYu6v-ExL0tJXA24vXH5e1mWs",
+  apiKey: API_KEY,
   authDomain: "project-01-21b2a.firebaseapp.com",
   projectId: "project-01-21b2a",
   storageBucket: "project-01-21b2a.appspot.com",
