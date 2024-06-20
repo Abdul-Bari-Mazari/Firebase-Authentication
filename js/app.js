@@ -13,6 +13,9 @@ import {
   deleteUser,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  GoogleAuthProvider,
+  googleProvider,
+  signInWithPopup,
 } from "./firebase.js";
 
 let email = document.getElementById("email"),
@@ -21,6 +24,8 @@ let email = document.getElementById("email"),
 let registerBtn = document.getElementById("register");
 let signInBtn = document.getElementById("signIn");
 let signOutBtn = document.getElementById("signOut");
+
+// ********************** Show password using eye icon *****************************
 
 let password__inputField = document.querySelector(".password__inputField");
 let login__password__inputField = document.querySelector(
@@ -52,6 +57,8 @@ if (password__eyeIcon) {
   password__eyeIcon.addEventListener("click", showPassword);
 }
 
+// ********************** Register *****************************
+
 const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
@@ -76,8 +83,11 @@ if (registerBtn) {
   registerBtn.addEventListener("click", register); // Event
 }
 
+// ********************** Check if user is signed in & Email verfication status *****************************
+
 let user__email = document.querySelector(".user__email");
 let user__phoneNumber = document.querySelector(".user__phoneNumber");
+let user__image = document.querySelector(".user__image");
 let user__controls = document.querySelector(".user__controls");
 let status = document.querySelector(".status");
 let user__verification = document.querySelector(".user__verification");
@@ -85,12 +95,16 @@ let verification_image = document.querySelector(".verification_image");
 let verify__status = document.querySelector(".verify__status");
 
 onAuthStateChanged(auth, (user) => {
+  console.log(user);
   if (user) {
+    if (user.photoURL !== null) {
+      user__image.src = user.photoURL;
+    }
     if (user.phoneNumber !== null) {
       let profileContainer = document.querySelector(".profileContainer");
       console.log("User Phone:", user.phoneNumber);
       console.log("USER", user);
-      profileContainer.style.width = "500px"
+      profileContainer.style.width = "500px";
       status.style.display = "none";
       user__controls.style.display = "none";
       user__phoneNumber.innerText = user.phoneNumber;
@@ -111,6 +125,8 @@ onAuthStateChanged(auth, (user) => {
     console.log("User isn't signed in");
   }
 });
+
+// ********************** Sign in *****************************
 
 const signIn = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
@@ -151,6 +167,8 @@ if (user__verification) {
   user__verification.addEventListener("click", sendEmail);
 }
 
+// ********************** Reset Password *****************************
+
 let resetPasswordBtn = document.querySelector(".reset_password_anchor");
 
 const resetPassword = () => {
@@ -172,6 +190,8 @@ const resetPassword = () => {
 if (resetPasswordBtn) {
   resetPasswordBtn.addEventListener("click", resetPassword);
 }
+
+// ********************** Authentication flag / type *****************************
 
 let authenticationType = null;
 
@@ -195,6 +215,8 @@ const deleteAccAuthentication = () => {
   reauthenticateUser(currentPassElement);
 };
 
+// ********************** Update Email *****************************
+
 let change__email = document.getElementById("change__email");
 let newEmail = document.querySelector(".newEmail");
 
@@ -210,6 +232,8 @@ const updateEmail = () => {
       console.log("Error", error);
     });
 };
+
+// ********************** Update Password *****************************
 
 let change__password = document.getElementById("change__password");
 
@@ -232,6 +256,8 @@ if (change__password) {
   change__password.addEventListener("click", passwordAuthentication);
 }
 
+// ********************** Delete User *****************************
+
 let deleteAccBtn = document.getElementById("deleteAccBtn");
 
 const deleteAccount = () => {
@@ -252,6 +278,8 @@ const deleteAccount = () => {
 if (deleteAccBtn) {
   deleteAccBtn.addEventListener("click", deleteAccAuthentication);
 }
+
+// ********************** Reuthentication *****************************
 
 const reauthenticateUser = (currentPassElement) => {
   const user = auth.currentUser;
@@ -281,21 +309,7 @@ if (change__email) {
   change__email.addEventListener("click", emailAuthentication);
 }
 
-const signOutUser = () =>
-  signOut(auth)
-    .then(() => {
-      console.log("User has signed out");
-      window.location = "./index.html";
-    })
-    .catch((error) => {
-      console.log("An error occured signing out!", error);
-    });
-
-if (signOutBtn) {
-  signOutBtn.addEventListener("click", signOutUser); // Event
-}
-
-// ! Phone authentication
+// ********************** Phone authentication / Phone sign in *****************************
 
 let sendCodeBtn = document.getElementById("sendCodeBtn");
 let confirmationResultGlobal;
@@ -343,4 +357,50 @@ if (sendCodeBtn) {
 
 if (verifyOTPBtn) {
   verifyOTPBtn.addEventListener("click", verifyOTP);
+}
+
+// ********************** Google sign in *****************************
+
+const googleSignIn = () => {
+  signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      window.location.href = "./profile.html";
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("Error:", errorCode, errorMessage);
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+};
+
+let signInWithGoogleBtn = document.querySelector(".signInWithGoogle-btn");
+
+if (signInWithGoogleBtn) {
+  signInWithGoogleBtn.addEventListener("click", googleSignIn);
+}
+
+// ********************** Sign Out *****************************
+
+const signOutUser = () =>
+  signOut(auth)
+    .then(() => {
+      console.log("User has signed out");
+      window.location = "./index.html";
+    })
+    .catch((error) => {
+      console.log("An error occured signing out!", error);
+    });
+
+if (signOutBtn) {
+  signOutBtn.addEventListener("click", signOutUser); // Event
 }

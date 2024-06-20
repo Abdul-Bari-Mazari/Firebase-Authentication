@@ -14,6 +14,8 @@ import {
   deleteUser,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 import { API_KEY } from "./api-key.js";
@@ -29,9 +31,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 export {
   auth,
+  googleProvider,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -46,4 +50,6 @@ export {
   deleteUser,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  GoogleAuthProvider,
+  signInWithPopup,
 };

@@ -27,8 +27,11 @@
         ></dotlottie-player>
       </div>
 
+      <!-- <img src="https://www.pngall.com/wp-content/uploads/5/Vertical-Line-PNG-High-Quality-Image.png" alt="" width="0.1px" height="300px" style="color: white; background-color: rgb(190, 190, 190); margin-right: 50px;"> -->
+
       <div class="login__components">
         <h1 class="login__heading">Sign in</h1>
+
         <div class="login__email">
           <label for="email">Email</label>
           <input
@@ -73,14 +76,39 @@
           >
         </p>
         <hr />
-        <p>
-          Or Sign in with
-          <a
-            href="./phone-login.html"
-            class="login__anchor"
-            >Phone Number</a
-          >
-        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+          "
+        >
+          <div class="signInWithPhone-container">
+            <a
+              class="signInWithPhone"
+              href="./phone-login.html"
+            >
+              <img
+                class="phoneImg"
+                src="./imgs/phone-icon.jpg"
+                alt=""
+              />
+              Phone</a
+            >
+          </div>
+
+          <div class="signInWithGoogle-container">
+            <button class="signInWithGoogle-btn">
+              <img
+                class="googleImg"
+                src="./imgs/googleLogo.png"
+                alt=""
+              />
+              Google
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

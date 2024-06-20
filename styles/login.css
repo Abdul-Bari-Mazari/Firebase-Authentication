@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins";
+  font-family: "Poppins" !important;
 }
 
 body {
@@ -87,6 +87,36 @@ input::placeholder {
   cursor: pointer;
 }
 
+.signInWithPhone-container,
+.signInWithGoogle-container {
+  width: 100%;
+  display: flex;
+}
+
+.signInWithPhone,
+.signInWithGoogle-btn {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.phoneImg {
+  width: 20px;
+}
+
+.googleImg {
+  width: 20px;
+}
+
 @media (max-width: 837px) {
   .login__animation {
     display: none;
@@ -96,6 +126,7 @@ input::placeholder {
 @media (max-width: 460px) {
   .main {
     width: 320px;
-    height: 480px;
+    height: fit-content;
+    padding: 25px;
   }
 }
