@@ -35,7 +35,6 @@ const googleProvider = new GoogleAuthProvider();
 
 export {
   auth,
-  googleProvider,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -50,6 +49,8 @@ export {
   deleteUser,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  // Sign in with google
+  googleProvider,
   GoogleAuthProvider,
   signInWithPopup,
 };

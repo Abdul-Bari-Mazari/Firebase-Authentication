@@ -18,6 +18,9 @@ import {
   signInWithPopup,
 } from "./firebase.js";
 
+import { addUserToFirestore } from "./firestore.js";
+
+let user;
 let email = document.getElementById("email"),
   password = document.getElementById("password");
 
@@ -83,8 +86,9 @@ if (registerBtn) {
   registerBtn.addEventListener("click", register); // Event
 }
 
-// ********************** Check if user is signed in & Email verfication status *****************************
+// ********************** Auth status and verification *****************************
 
+let user__name = document.querySelector(".user__name");
 let user__email = document.querySelector(".user__email");
 let user__phoneNumber = document.querySelector(".user__phoneNumber");
 let user__image = document.querySelector(".user__image");
@@ -94,9 +98,23 @@ let user__verification = document.querySelector(".user__verification");
 let verification_image = document.querySelector(".verification_image");
 let verify__status = document.querySelector(".verify__status");
 
+let displayName;
+
 onAuthStateChanged(auth, (user) => {
   console.log(user);
+  console.log(location.pathname);
   if (user) {
+    addUserToFirestore(user);
+
+    if (user__name) {
+      displayName = user.displayName;
+      console.log(displayName);
+      user__name.value = user.displayName;
+    }
+    if (location.pathname !== "/profile.html") {
+      window.location = "profile.html";
+    }
+    // if (location.pathname !== '')
     if (user.photoURL !== null) {
       user__image.src = user.photoURL;
     }
@@ -122,6 +140,13 @@ onAuthStateChanged(auth, (user) => {
       verification_image.style.display = "none";
     }
   } else {
+    if (
+      location.pathname !== "/index.html" &&
+      location.pathname !== "/login.html" &&
+      location.pathname !== "/phone-login.html"
+    ) {
+      window.location = "index.html";
+    }
     console.log("User isn't signed in");
   }
 });
@@ -174,6 +199,7 @@ let resetPasswordBtn = document.querySelector(".reset_password_anchor");
 const resetPassword = () => {
   sendPasswordResetEmail(auth, email.value)
     .then(() => {
+      alert("Check your email for the rest link.");
       console.log("Reset password email sent successfully!");
     })
     .catch((error) => {
@@ -324,7 +350,7 @@ const registerWithPhone = () => {
 
   const appVerifier = window.recaptchaVerifier;
 
-  signInWithPhoneNumber(auth, `+${phoneNumber.value}`, appVerifier)
+  signInWithPhoneNumber(auth, `+92${phoneNumber.value}`, appVerifier)
     .then((confirmationResult) => {
       alert("Verification code sent!");
       confirmationResultGlobal = confirmationResult;
@@ -364,22 +390,18 @@ if (verifyOTPBtn) {
 const googleSignIn = () => {
   signInWithPopup(auth, googleProvider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
+      console.log("Google User:", user);
       window.location.href = "./profile.html";
     })
     .catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log("Error:", errorCode, errorMessage);
       const email = error.customData.email;
-      // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
     });
 };
 
@@ -404,3 +426,5 @@ const signOutUser = () =>
 if (signOutBtn) {
   signOutBtn.addEventListener("click", signOutUser); // Event
 }
+
+export { user, user__name, displayName };
