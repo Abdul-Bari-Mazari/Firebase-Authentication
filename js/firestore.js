@@ -11,6 +11,7 @@ import {
   setDoc,
   updateDoc,
   collection,
+  getDoc,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
 
@@ -32,19 +33,50 @@ const db = getFirestore(app);
 // **********************^ Firestore *****************************
 
 import { user, user__name, displayName } from "./app.js";
+import { displayImage } from "./storage.js";
 
 // Add user to firestore
+const spinnerMain = document.getElementById("spinnerMain");
+const user__profile = document.querySelector(".user__profile");
+
 const addUserToFirestore = async (user) => {
-  await setDoc(doc(db, "users", user.uid), {
-    name: user.displayName,
-    email: user.email,
-    email_status: user.emailVerified,
-    photo: user.photoURL,
-  });
-  console.log("User added to firestore");
+  const userRef = doc(db, "users", user.uid);
+  const userDoc = await getDoc(userRef);
+
+  if (!userDoc.exists()) {
+    spinnerMain.style.display = "none";
+    user__profile.style.display = "flex";
+    await setDoc(userRef, {
+      name: user.displayName || "Anonymous",
+      email: user.email,
+      email_status: user.emailVerified,
+      phone: user.phoneNumber,
+      photo: user.photoURL || "default_photo_url",
+    })
+      .then(() => {
+        console.log("User added to Firestore");
+      })
+      .catch((error) => {
+        console.error("Error adding user to Firestore:", error);
+      });
+  } else {
+    console.log("User already exists in Firestore");
+    displayImage();
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      if (doc.id === auth.currentUser.uid) {
+        console.log(`${doc.id} => ${doc.data().name}`);
+        user__name.value = doc.data().name;
+        if (user__name.value === doc.data().name) {
+          spinnerMain.style.display = "none";
+          user__profile.style.display = "flex";
+        }
+      }
+    });
+  }
 };
 
-window.addUserToFirestore = addUserToFirestore;
+// window.addUserToFirestore = addUserToFirestore;
 
 // Read data from firestore
 const readData = async () => {
@@ -92,4 +124,13 @@ saveNameBtn && saveNameBtn.addEventListener("click", updateDataInFirestore);
 
 // Exports
 
-export { doc, setDoc, db, updateDoc, collection, getDocs, addUserToFirestore };
+export {
+  doc,
+  setDoc,
+  db,
+  updateDoc,
+  collection,
+  getDoc,
+  getDocs,
+  addUserToFirestore,
+};

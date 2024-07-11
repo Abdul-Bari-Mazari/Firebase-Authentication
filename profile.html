@@ -20,14 +20,60 @@
     <div class="profileContainer container p-3 col-12 col-md-8">
       <div class="user__card">
         <div
+          id="spinnerMain"
+          class="spinner-border mb-3"
+          style="width: 5rem; height: 5rem"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div
           class="user__all__content d-flex flex-column align-items-center justify-content-center"
         >
-          <div class="user__profile d-flex flex-column align-items-center p-3">
-            <img
-              class="user__image"
-              src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg"
-              alt=""
-            />
+          <div
+            class="user__profile flex-column align-items-center p-3"
+            style="display: none"
+          >
+            <div
+              id="spinner"
+              class="spinner-border mb-3"
+              style="width: 5rem; height: 5rem; display: none"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div
+              id="user__image__container"
+              class="position-relative"
+            >
+              <img
+                class="user__image"
+                src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg"
+                alt=""
+              />
+              <img
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                id="imageEditIcon"
+                src="./imgs/edit-pencil-write-icon--4.png"
+                class="user__image__edit__icon img-fluid position-absolute"
+                alt=""
+              />
+            </div>
+            <div
+            style="width: 50%; height: 10px; display: none;"
+              class="progress mt-3"
+              role="progressbar"
+              aria-label="Basic example"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar"
+                style="width: 25%"
+              ></div>
+            </div>
             <div
               class="d-flex align-items-center justify-content-center mt-3 gap-1"
             >
@@ -35,11 +81,13 @@
                 type="text"
                 class="user__name form-control text-center border border-1 border-secondary fw-medium w-75"
               />
-              <button class="saveNameBtn p-1 border-secondary rounded btn btn-primary">
+              <button
+                class="saveNameBtn p-1 border-secondary rounded btn btn-primary"
+              >
                 Save
               </button>
             </div>
-            <div class="d-flex align-items-center mb-4">
+            <div class="d-flex align-items-center mt-3">
               <p class="user__email"></p>
               <span class="status">&#10060;</span>
               <p class="user__phoneNumber"></p>
@@ -50,6 +98,67 @@
             class="user__controls flex-column"
             style="display: flex"
           >
+            <div
+              class="select_file_container p-2 mb-2 d-flex align-items-center justify-content-between"
+            >
+              <!-- *** -->
+              <!-- Button trigger modal -->
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1
+                        class="modal-title fs-5"
+                        id="staticBackdropLabel"
+                      >
+                        Change Profile Photo
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <input
+                        id="file"
+                        type="file"
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        data-bs-dismiss="modal"
+                        type="button"
+                        class="btn btn-primary"
+                        id="uploadBtn"
+                      >
+                        Update Photo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- *** -->
+            </div>
+            <!-- <button id="getImageBtn">Get Image</button> -->
             <div
               class="email__verfication__components d-flex mb-2 d-flex align-items-center justify-content-between"
             >
@@ -356,6 +465,10 @@
     </div>
     <!-- container -->
 
+    <script
+      type="module"
+      src="./js/storage.js"
+    ></script>
     <script
       src="./js/app.js"
       type="module"

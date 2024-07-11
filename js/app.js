@@ -66,6 +66,7 @@ const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log("createUserWithEmailAndPassword user:", user);
       console.log("userCredential", userCredential);
       alert("Succesfully Registered!");
       window.location.href = "./login.html";
@@ -77,6 +78,8 @@ const register = () => {
         alert("Invalid Email Address!");
       } else if (errorCode === "auth/missing-password") {
         alert("Password can't be empty!");
+      } else if (errorCode === "auth/email-already-in-use") {
+        alert("Email already in use.");
       }
       console.log("errorCode:", errorCode);
     });
@@ -101,14 +104,13 @@ let verify__status = document.querySelector(".verify__status");
 let displayName;
 
 onAuthStateChanged(auth, (user) => {
-  console.log(user);
   console.log(location.pathname);
   if (user) {
+    console.log(user);
     addUserToFirestore(user);
-
     if (user__name) {
       displayName = user.displayName;
-      console.log(displayName);
+      console.log("Display Name:", displayName);
       user__name.value = user.displayName;
     }
     if (location.pathname !== "/profile.html") {
@@ -356,6 +358,7 @@ const registerWithPhone = () => {
       confirmationResultGlobal = confirmationResult;
     })
     .catch((error) => {
+      alert("Make sure phone number is in format (3XX XXXXXXX)");
       console.log("Error:", error);
     });
 };
@@ -373,6 +376,7 @@ const verifyOTP = () => {
       window.location.href = "./profile.html";
     })
     .catch((error) => {
+      alert("Incorrect OTP!");
       console.log("Error:", error);
     });
 };
@@ -427,4 +431,4 @@ if (signOutBtn) {
   signOutBtn.addEventListener("click", signOutUser); // Event
 }
 
-export { user, user__name, displayName };
+export { user, user__name, displayName, auth };

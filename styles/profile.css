@@ -52,6 +52,21 @@ p {
   border-radius: 50%;
 }
 
+.user__image__edit__icon {
+  width: 35px;
+  background-color: white;
+  border-radius: 10px;
+  border: 0.5px solid black;
+  padding: 8px;
+  right: 14px;
+  bottom: 14px;
+  cursor: pointer;
+}
+
+.user__image__edit__icon:hover {
+  background-color: rgb(231, 231, 231);
+}
+
 .user__email {
   /* color: black; */
   padding: 5px;
@@ -108,7 +123,8 @@ p {
 
 .email__verfication__components,
 .change__password__container,
-.change__email__container {
+.change__email__container,
+.select_file_container {
   border-bottom: 1px solid grey;
 }
 
