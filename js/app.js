@@ -344,23 +344,27 @@ let confirmationResultGlobal;
 
 const registerWithPhone = () => {
   const phoneNumber = document.getElementById("phoneNumber");
-  window.recaptchaVerifier = new RecaptchaVerifier(
-    auth,
-    "recaptcha-container",
-    {}
-  );
+  if (phoneNumber.value === "") {
+    alert("Phone number can't be empty");
+  } else {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {}
+    );
+    const appVerifier = window.recaptchaVerifier;
 
-  const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, `+92${phoneNumber.value}`, appVerifier)
+      .then((confirmationResult) => {
+        alert("Verification code sent!");
+        confirmationResultGlobal = confirmationResult;
+      })
+      .catch((error) => {
+        alert("Make sure phone number is in format (3XX XXXXXXX)");
 
-  signInWithPhoneNumber(auth, `+92${phoneNumber.value}`, appVerifier)
-    .then((confirmationResult) => {
-      alert("Verification code sent!");
-      confirmationResultGlobal = confirmationResult;
-    })
-    .catch((error) => {
-      alert("Make sure phone number is in format (3XX XXXXXXX)");
-      console.log("Error:", error);
-    });
+        console.log("Error:", error);
+      });
+  }
 };
 
 let verifyOTPBtn = document.getElementById("verifyOTPBtn");
