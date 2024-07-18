@@ -105,6 +105,7 @@ let displayName;
 
 onAuthStateChanged(auth, (user) => {
   console.log(location.pathname);
+  console.log(window.location.pathname);
   if (user) {
     console.log(user);
     addUserToFirestore(user);
@@ -114,7 +115,7 @@ onAuthStateChanged(auth, (user) => {
       user__name.value = user.displayName;
     }
     if (location.pathname !== "/profile.html") {
-      window.location = "profile.html";
+      window.location.pathname = "/profile.html";
     }
     // if (location.pathname !== '')
     if (user.photoURL !== null) {
@@ -142,13 +143,13 @@ onAuthStateChanged(auth, (user) => {
       verification_image.style.display = "none";
     }
   } else {
-    if (
-      location.pathname !== "/index.html" &&
-      location.pathname !== "/login.html" &&
-      location.pathname !== "/phone-login.html"
-    ) {
-      window.location = "index.html";
-    }
+    // if (
+    //   location.pathname !== "/index.html" &&
+    //   location.pathname !== "/login.html" &&
+    //   location.pathname !== "/phone-login.html"
+    // ) {
+    //   window.location.pathname = "/index.html";
+    // }
     console.log("User isn't signed in");
   }
 });
